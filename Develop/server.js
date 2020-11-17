@@ -2,34 +2,32 @@
 const express = require("express");
 const path = require("path");
 const fs = require("fs");
-// for unique ids
+// shortId for unique ids
 const shortId = require("shortid");
-// Sets up the Express App
+// set up the Express app
 const app = express();
 const PORT = process.env.PORT || 3000;
-
+// get the data from the db.json file
 const allNotes = JSON.parse(fs.readFileSync(path.join(__dirname, "./db/db.json")));
-
+// test allNotes data
 console.log(allNotes);
 console.log("test all notes");
-
-// Sets up the Express app to handle data parsing
+// set up the Express app to handle data parsing
 app.use(express.urlencoded({
     extended: true
 }));
-
+// parse incoming requests with JSON content
 app.use(express.json());
 
 // reference: https://expressjs.com/en/starter/static-files.html
 app.use(express.static("public"));
 
-// Routes
-// index.html
+// routes
+// index.html route
 app.get("/", (req, res) => {
     res.sendFile(path.join(__dirname, "index.html"));
 });
-
-// notes.html
+// notes.html route
 app.get("/notes", (req, res) => {
     res.sendFile(path.join(__dirname, "./public/notes.html"));
 });
@@ -37,7 +35,10 @@ app.get("/notes", (req, res) => {
 app.get("/api/notes", (req, res) => {
     return res.json(allNotes);
 });
-
+// using * will direct everything else (other than /notes) to index.html
+app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "./public/index.html"));
+});
 // POST /api/notes - Should receive a new note to save on the request body, add it to the db.json file, and then return the new note to the client.
 app.post("/api/notes", (req, res) => {
     let newNote = `{ "title": "${req.body.title}", "text":"${req.body.text}", "id": "${shortId.generate()}" }`;
@@ -49,7 +50,6 @@ app.post("/api/notes", (req, res) => {
     });
     return res.json(newNote);
 });
-
 // DELETE /api/notes/:id - Should receive a query parameter containing the id of a note to delete. This means you'll need to find a way to give each note a unique id when it's saved. In order to delete a note, you'll need to read all notes from the db.json file, remove the note with the given id property, and then rewrite the notes to the db.json file.
 app.delete("/api/notes/:id", (req, res) => {
     let index = 0;
@@ -66,9 +66,6 @@ app.delete("/api/notes/:id", (req, res) => {
     });
 });
 
-app.get("*", (req, res) => {
-    res.sendFile(path.join(__dirname, "index.html"));
-});
 
 // Starts the server to begin listening
 app.listen(PORT, () => {
