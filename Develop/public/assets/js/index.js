@@ -128,8 +128,7 @@ const renderNoteList = (notes) => {
   if (notes.length === 0) {
     noteListItems.push(create$li("No saved Notes", false));
   }
-  // was getting notes.forEach is not a function error so had to add JSON.parse()
-  notes = JSON.parse(notes);
+
   notes.forEach(note => {
     const $li = create$li(note.title).data(note);
     noteListItems.push($li);
