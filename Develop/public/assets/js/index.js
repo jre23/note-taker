@@ -1,44 +1,9 @@
-// Dependencies
-const express = require("express");
-const path = require("path");
-// was getting a "jQuery requires a window with a document" error. reference for fix: https://stackoverflow.com/questions/21358015/error-jquery-requires-a-window-with-a-document
-const jsdom = require("jsdom");
-const $ = require("jquery")(new jsdom.JSDOM().window);
-const fs = require("fs");
-
 // store html class references
 const $noteTitle = $(".note-title");
 const $noteText = $(".note-textarea");
 const $saveNoteBtn = $(".save-note");
 const $newNoteBtn = $(".new-note");
 const $noteList = $(".list-container .list-group");
-
-// Sets up the Express App
-const app = express();
-const PORT = process.env.PORT || 3000;
-
-// Sets up the Express app to handle data parsing
-app.use(express.urlencoded({
-  extended: true
-}));
-app.use(express.json());
-
-// Routes
-app.get("/", function (req, res) {
-  res.sendFile(path.join(__dirname, "../../index.html"));
-});
-
-app.get("/notes", function (req, res) {
-  res.sendFile(path.join(__dirname, "../../notes.html"));
-});
-
-// GET /api/notes - Should read the db.json file and return all saved notes as JSON.
-app.get("/api/notes", function (req, res) {
-  return fs.readFile(__dirname + "db.json", function (err, data) {
-    if (err) throw err;
-  });
-  res.end.json(data);
-});
 
 // activeNote is used to keep track of the note in the textarea
 let activeNote = {};
@@ -182,11 +147,6 @@ $newNoteBtn.on("click", handleNewNoteView);
 $noteList.on("click", ".delete-note", handleNoteDelete);
 $noteTitle.on("keyup", handleRenderSaveBtn);
 $noteText.on("keyup", handleRenderSaveBtn);
-
-// Starts the server to begin listening
-app.listen(PORT, function () {
-  console.log("App listening on PORT " + PORT);
-});
 
 // Gets and renders the initial list of notes
 getAndRenderNotes();
