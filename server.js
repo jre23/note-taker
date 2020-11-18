@@ -8,7 +8,7 @@ const shortId = require("shortid");
 const app = express();
 const PORT = process.env.PORT || 3000;
 // get the data from the db.json file. this is an array of objects
-const allNotes = JSON.parse(fs.readFileSync(path.join(__dirname, "./db/db.json")));
+const allNotes = JSON.parse(fs.readFileSync(path.join(__dirname, "./Develop/db/db.json")));
 // set up the Express app to handle data parsing
 app.use(express.urlencoded({
     extended: true
@@ -16,14 +16,14 @@ app.use(express.urlencoded({
 // parse incoming requests with JSON content
 app.use(express.json());
 // reference: https://expressjs.com/en/starter/static-files.html
-app.use(express.static("public"));
+app.use(express.static("Develop/public"));
 // / GET route - index.html
 app.get("/", (req, res) => {
-    res.sendFile(path.join(__dirname, "./public/index.html"));
+    res.sendFile(path.join(__dirname, "./Develop/public/index.html"));
 });
 // notes.html GET route
 app.get("/notes", (req, res) => {
-    res.sendFile(path.join(__dirname, "./public/notes.html"));
+    res.sendFile(path.join(__dirname, "./Develop/public/notes.html"));
 });
 // /api/notes GET route returns allNotes as JSON.
 app.get("/api/notes", (req, res) => {
@@ -31,13 +31,13 @@ app.get("/api/notes", (req, res) => {
 });
 // * GET route - using * will direct everything else (other than /notes) to index.html
 app.get("*", (req, res) => {
-    res.sendFile(path.join(__dirname, "./public/index.html"));
+    res.sendFile(path.join(__dirname, "./Develop/public/index.html"));
 });
 // /api/notes POST route - receives a new note to save to the db.json file. returns the new note to the client.
 app.post("/api/notes", (req, res) => {
     let newNote = `{ "title": "${req.body.title}", "text":"${req.body.text}", "id": "${shortId.generate()}" }`;
     allNotes.push(JSON.parse(newNote));
-    fs.writeFile(path.join(__dirname, "./db/db.json"), JSON.stringify(allNotes), err => {
+    fs.writeFile(path.join(__dirname, "./Develop/db/db.json"), JSON.stringify(allNotes), err => {
         if (err) throw err;
     });
     return res.json(newNote);
@@ -51,7 +51,7 @@ app.delete("/api/notes/:id", (req, res) => {
         }
     }
     allNotes.splice(index, 1);
-    fs.writeFile(path.join(__dirname, "./db/db.json"), JSON.stringify(allNotes), err => {
+    fs.writeFile(path.join(__dirname, "./Develop/db/db.json"), JSON.stringify(allNotes), err => {
         if (err) throw err;
         res.end();
     });
