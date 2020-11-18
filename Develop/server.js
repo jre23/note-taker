@@ -15,9 +15,12 @@ app.use(express.urlencoded({
 }));
 // parse incoming requests with JSON content
 app.use(express.json());
-
 // reference: https://expressjs.com/en/starter/static-files.html
 app.use(express.static("public"));
+// / GET route - index.html
+app.get("/", (req, res) => {
+    res.sendFile(path.join(__dirname, "index.html"));
+});
 // notes.html GET route
 app.get("/notes", (req, res) => {
     res.sendFile(path.join(__dirname, "./public/notes.html"));
