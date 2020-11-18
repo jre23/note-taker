@@ -18,21 +18,19 @@ The goal for this project was to build a note taking app via Express, a Node.js 
 
 [GitHub repo](https://github.com/jre23/note-taker)
 
-[Video Demonstration]()
+[Video Demonstration](https://drive.google.com/file/d/1WxTAeAdV51PRuhZfAiFfALiKs6IV7zoE/view)
 
 [Heroku Deployment]()
 
 ## Screenshots
 
-![note taker screenshot 1]()
+![note taker screenshot 1](https://user-images.githubusercontent.com/69170823/99466746-ca3a9b80-28f1-11eb-8af5-5d968ab76e36.png)
 
-![note taker screenshot 2]()
+![note taker screenshot 2](https://user-images.githubusercontent.com/69170823/99466842-f48c5900-28f1-11eb-8f3b-f259e8bff22c.png)
 
-![note taker screenshot 3]()
+![note taker screenshot 3](https://user-images.githubusercontent.com/69170823/99466894-0cfc7380-28f2-11eb-8e19-4457d4f4e918.png)
 
-![note taker screenshot 4]()
-
-![note taker screenshot 5]()
+![note taker screenshot 4](https://user-images.githubusercontent.com/69170823/99466951-2c939c00-28f2-11eb-94c6-a4b975a12073.png)
 
 ## Technologies
 
