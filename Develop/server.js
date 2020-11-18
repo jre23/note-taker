@@ -9,9 +9,6 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 // get the data from the db.json file. this is an array of objects
 const allNotes = JSON.parse(fs.readFileSync(path.join(__dirname, "./db/db.json")));
-// test allNotes data
-console.log(allNotes);
-console.log("test all notes");
 // set up the Express app to handle data parsing
 app.use(express.urlencoded({
     extended: true
@@ -36,9 +33,7 @@ app.get("*", (req, res) => {
 // /api/notes POST route - receives a new note to save to the db.json file. returns the new note to the client.
 app.post("/api/notes", (req, res) => {
     let newNote = `{ "title": "${req.body.title}", "text":"${req.body.text}", "id": "${shortId.generate()}" }`;
-    console.log("test post api/notes");
     allNotes.push(JSON.parse(newNote));
-    console.log(allNotes);
     fs.writeFile(path.join(__dirname, "./db/db.json"), JSON.stringify(allNotes), err => {
         if (err) throw err;
     });
@@ -53,7 +48,6 @@ app.delete("/api/notes/:id", (req, res) => {
         }
     }
     allNotes.splice(index, 1);
-    console.log("test delete" + req.params.id);
     fs.writeFile(path.join(__dirname, "./db/db.json"), JSON.stringify(allNotes), err => {
         if (err) throw err;
         res.end();
