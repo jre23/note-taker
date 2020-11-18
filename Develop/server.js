@@ -19,7 +19,7 @@ app.use(express.json());
 app.use(express.static("public"));
 // / GET route - index.html
 app.get("/", (req, res) => {
-    res.sendFile(path.join(__dirname, "index.html"));
+    res.sendFile(path.join(__dirname, "./public/index.html"));
 });
 // notes.html GET route
 app.get("/notes", (req, res) => {
