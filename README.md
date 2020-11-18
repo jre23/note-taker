@@ -3,7 +3,7 @@
 ## Table of Contents
 
 1. [Description](#Description)
-2. [GitHub Repo and Video Demonstration](#GitHub-Repo-and-Video-Demonstration)
+2. [GitHub Repo, Video Demonstration, and Heroku Deployment](#GitHub-Repo-Video-Demonstration-and-Heroku-Deployment)
 3. [Screenshots](#Screenshots)
 4. [Technologies](#Technologies)
 5. [Installation](#Installation)
@@ -14,11 +14,13 @@
 
 The goal for this project was to build a note taking app via Express, a Node.js web app framework. User input is received via notes.html and manipulated by back-end code to render a nice display of notes that can be saved for viewing later and deleted when no longer needed.
 
-## GitHub Repo and Video Demonstration
+## GitHub Repo, Video Demonstration, and Heroku Deployment
 
 [GitHub repo](https://github.com/jre23/note-taker)
 
 [Video Demonstration]()
+
+[Heroku Deployment]()
 
 ## Screenshots
 
@@ -40,6 +42,7 @@ Please see the following for a list of technologies used in this project:
 * Node.js
 * Express
 * Git Bash
+* Heroku
 
 ## Installation
 
