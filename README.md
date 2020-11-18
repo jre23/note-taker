@@ -20,7 +20,7 @@ The goal for this project was to build a note taking app via Express, a Node.js 
 
 [Video Demonstration](https://drive.google.com/file/d/1WxTAeAdV51PRuhZfAiFfALiKs6IV7zoE/view)
 
-[Heroku Deployment]()
+[Heroku Deployment](https://peaceful-spire-85964.herokuapp.com/)
 
 ## Screenshots
 
